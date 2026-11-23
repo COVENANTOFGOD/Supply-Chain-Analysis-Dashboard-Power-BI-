@@ -1,4 +1,4 @@
-# Supply Chain Analysis Dashboard
+# Supply Chain Analysis Dashboard (Power Bi)
 
 📌 Project Overview
 
