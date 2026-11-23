@@ -6,6 +6,38 @@ An interactive, executive-level Supply Chain Analysis Dashboard designed to moni
 
 This dashboard empowers supply chain managers and business stakeholders to quickly identify bottlenecks, evaluate carrier performance, and track profitability across years.
 
+# 🗄️ Data Architecture & Modeling
+
+Behind the scenes, this report is powered by a Galaxy Schema (Fact Constellation) designed in Power BI to seamlessly connect multi-stage supply chain processes without creating circular dependencies or many-to-many bottlenecks.
+
+Dimension Tables (dim_)
+
+dim_date: Central calendar table enabling time-intelligence comparisons across 2023 and 2024.
+
+dim_product: Product hierarchy including category, and minimum order/inventory thresholds and others.
+
+dim_customer: Customer segmentation detailing sales channels (channel_type), geography (country), and annual volume and others.
+
+dim_supplier: Vendor master data tracking supplier names, keys, and tier classifications (tier) and other.
+
+dim_facility: Manufacturing and warehouse locations with geographic attributes and annual_capacity.
+
+Fact Tables (fact_)
+
+fact_procurement: Tracks raw material sourcing, supplier lead times, and vendor quality_score etc.
+
+fact_production: Monitors manufacturing output, defective_units, and defect_rate_pct by facility etc.
+
+fact_inventory: Captures stock levels across facilities and products over time etc.
+
+fact_shipment: Logs logistics movement, delivery dates, and specific delay_reason codes etc.
+
+fact_sales: Records retail transactions, revenue, discounts (discount_amount), and platform performance etc.
+
+All relationships follow strict one-to-many (1:*) single-directional filtering from dimension tables down to fact tables, ensuring fast DAX query execution and accurate cross-filtering across the entire dashboard.
+<img width="1365" height="767" alt="Screenshot 2026-11-22 183657" src="https://github.com/user-attachments/assets/093b777c-717b-496e-b124-162c50bee1b4" />
+
+
 🎯 Key Business Objectives
 
 Financial Visibility: Track Gross Revenue, Net Revenue, Sales Costs, and Profit Margins across fiscal years and retail channels.
